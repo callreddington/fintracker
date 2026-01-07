@@ -5,6 +5,7 @@ import { authRoutes } from '@modules/auth/auth.routes';
 import { userRoutes } from '@modules/auth/user.routes';
 import ledgerRoutes from '@modules/ledger/ledger.routes';
 import incomeRoutes from '@modules/income/income.routes';
+import dashboardRoutes from '@modules/dashboard/dashboard.routes';
 import { logger } from '@utils/logger';
 import { validateEnv } from '@utils/validateEnv';
 import compression from 'compression';
@@ -104,6 +105,9 @@ app.use(`/api/${API_VERSION}/ledger`, ledgerRoutes);
 
 // Income routes (PAYE calculator is public, others protected)
 app.use(`/api/${API_VERSION}/income`, incomeRoutes);
+
+// Dashboard routes (protected)
+app.use(`/api/${API_VERSION}/dashboard`, dashboardRoutes);
 
 // TODO: Mount other module routes
 // app.use(`/api/${API_VERSION}/expenses`, authMiddleware, expenseRouter);
