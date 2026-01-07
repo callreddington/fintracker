@@ -1,8 +1,6 @@
 {
-  "version": 2,
-  "buildCommand": "cd frontend && npm install && npm run build",
+  "buildCommand": "npm install --prefix frontend --legacy-peer-deps && npm run build --prefix frontend",
   "outputDirectory": "frontend/dist",
-  "installCommand": "npm install --prefix frontend",
-  "framework": null,
-  "devCommand": "cd frontend && npm run dev"
+  "installCommand": "echo 'Skip root dependencies'",
+  "framework": null
 }
