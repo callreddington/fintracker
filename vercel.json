@@ -4,6 +4,5 @@
   "outputDirectory": "frontend/dist",
   "installCommand": "npm install --prefix frontend",
   "framework": null,
-  "devCommand": "cd frontend && npm run dev",
-  "ignoreCommand": "git diff --quiet HEAD^ HEAD ./frontend/"
+  "devCommand": "cd frontend && npm run dev"
 }
