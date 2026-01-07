@@ -1,0 +1,18 @@
+  - Create Supabase account → Get database URL - Done
+  	# Database
+	DATABASE_URL=postgresql://postgres:Pass%40309%21%211758@db.pccpmgwhkvfuutxcqsud.supabase.co:5432/postgres
+	DATABASE_URL_POOLER=postgresql://postgres.pccpmgwhkvfuutxcqsud:Pass%40309%21%211758@aws-0-us-west-1.pooler.supabase.com:6543/postgres
+
+	# Supabase
+	SUPABASE_URL=https://pccpmgwhkvfuutxcqsud.supabase.co
+	SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjY3BtZ3doa3ZmdXV0eGNxc3VkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc3MDgwNzYsImV4cCI6MjA4MzI4NDA3Nn0.sTkskqf9lVAA-N8jmgJxLtZtf26m86yxIM-FFn_t8jg
+	SUPABASE_SERVICE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjY3BtZ3doa3ZmdXV0eGNxc3VkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2NzcwODA3NiwiZXhwIjoyMDgzMjg0MDc2fQ.fn2QCBBOWIQkeeVQ8ohR2NBpgDBsEK2_EVOkpXBOdv8
+
+   - Create Upstash account → Get Redis URL - Done
+   	UPSTASH_REDIS_REST_URL="https://easy-husky-28091.upstash.io"
+	UPSTASH_REDIS_REST_TOKEN="AW27AAIncDIyMzg1NDRkNTMxOTY0NDM2OTg0MzEwODY4NmI2ZTdmMHAyMjgwOTE"
+	redis-cli --tls -u redis://default:AW27AAIncDIyMzg1NDRkNTMxOTY0NDM2OTg0MzEwODY4NmI2ZTdmMHAyMjgwOTE@easy-husky-28091.upstash.io:6379
+	Token: AW27AAIncDIyMzg1NDRkNTMxOTY0NDM2OTg0MzEwODY4NmI2ZTdmMHAyMjgwOTE
+	HTTPS: https://easy-husky-28091.upstash.io
+   - Create Vercel account → Connect GitHub repo - Done
+   - Create Render account → Connect GitHub repo - Done
