@@ -1,12 +1,22 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import PageHeader from '@/components/layout/page-header';
 
 export default function PortfolioPage() {
+  const handleAddInvestment = () => {
+    // TODO: Open add investment dialog/form
+    console.log('Add investment clicked');
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Portfolio</h1>
-        <p className="text-muted-foreground">Track your investment portfolio</p>
-      </div>
+      <PageHeader
+        title="Portfolio"
+        description="Track your investment portfolio"
+        action={{
+          label: 'Add Investment',
+          onClick: handleAddInvestment,
+        }}
+      />
 
       <Card>
         <CardHeader>

@@ -1,12 +1,22 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import PageHeader from '@/components/layout/page-header';
 
 export default function TransactionsPage() {
+  const handleAddTransaction = () => {
+    // TODO: Open add transaction dialog/form
+    console.log('Add transaction clicked');
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Transactions</h1>
-        <p className="text-muted-foreground">View and manage all your transactions</p>
-      </div>
+      <PageHeader
+        title="Transactions"
+        description="View and manage all your transactions"
+        action={{
+          label: 'Add Transaction',
+          onClick: handleAddTransaction,
+        }}
+      />
 
       <Card>
         <CardHeader>

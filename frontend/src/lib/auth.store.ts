@@ -11,6 +11,7 @@ interface AuthState {
   logout: () => Promise<void>;
   clearError: () => void;
   initialize: () => Promise<void>;
+  getAccessToken: () => Promise<string>;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -116,5 +117,13 @@ export const useAuthStore = create<AuthState>((set) => ({
         });
       }
     }
+  },
+
+  getAccessToken: async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (!accessToken) {
+      throw new Error('No access token available');
+    }
+    return accessToken;
   },
 }));

@@ -1,12 +1,22 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import PageHeader from '@/components/layout/page-header';
 
 export default function ExpensesPage() {
+  const handleAddExpense = () => {
+    // TODO: Open add expense dialog/form
+    console.log('Add expense clicked');
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Expenses</h1>
-        <p className="text-muted-foreground">Track and categorize your spending</p>
-      </div>
+      <PageHeader
+        title="Expenses"
+        description="Track and categorize your spending"
+        action={{
+          label: 'Add Expense',
+          onClick: handleAddExpense,
+        }}
+      />
 
       <Card>
         <CardHeader>

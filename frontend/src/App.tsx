@@ -15,9 +15,11 @@ import GoalsPage from '@/pages/goals';
 import PortfolioPage from '@/pages/portfolio';
 import InsightsPage from '@/pages/insights';
 import SettingsPage from '@/pages/settings';
+import CalculatorPage from '@/pages/calculator';
 
-// Layout
+// Layout & Auth
 import MainLayout from '@/components/layout/main-layout';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,7 +42,13 @@ function App() {
             <Route path="/debug" element={<DebugPage />} />
 
             {/* Protected routes */}
-            <Route element={<MainLayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <MainLayout />
+                </ProtectedRoute>
+              }
+            >
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/transactions" element={<TransactionsPage />} />
@@ -51,10 +59,14 @@ function App() {
               <Route path="/portfolio" element={<PortfolioPage />} />
               <Route path="/insights" element={<InsightsPage />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/accounts" element={<div>Accounts Page (Coming Soon)</div>} />
+              <Route path="/bills" element={<div>Bill Reminders (Coming Soon)</div>} />
+              <Route path="/calculator" element={<CalculatorPage />} />
+              <Route path="/mpesa" element={<div>M-Pesa Parser (Coming Soon)</div>} />
             </Route>
 
             {/* 404 */}
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         </Router>
       </ThemeProvider>

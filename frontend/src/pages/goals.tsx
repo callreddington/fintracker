@@ -1,12 +1,22 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import PageHeader from '@/components/layout/page-header';
 
 export default function GoalsPage() {
+  const handleCreateGoal = () => {
+    // TODO: Open create goal dialog/form
+    console.log('Create goal clicked');
+  };
+
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Goals</h1>
-        <p className="text-muted-foreground">Set and track your financial goals</p>
-      </div>
+      <PageHeader
+        title="Goals"
+        description="Set and track your financial goals"
+        action={{
+          label: 'Create Goal',
+          onClick: handleCreateGoal,
+        }}
+      />
 
       <Card>
         <CardHeader>
