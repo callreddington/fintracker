@@ -3,6 +3,7 @@ import { rateLimiter } from '@middleware/rateLimiter';
 import { requestLogger } from '@middleware/requestLogger';
 import { authRoutes } from '@modules/auth/auth.routes';
 import { userRoutes } from '@modules/auth/user.routes';
+import ledgerRoutes from '@modules/ledger/ledger.routes';
 import { logger } from '@utils/logger';
 import { validateEnv } from '@utils/validateEnv';
 import compression from 'compression';
@@ -97,8 +98,8 @@ app.use(`/api/${API_VERSION}/auth`, authRoutes);
 // User routes (protected)
 app.use(`/api/${API_VERSION}/users`, userRoutes);
 
-// TODO: Mount ledger routes
-// app.use(`/api/${API_VERSION}/ledger`, authMiddleware, ledgerRouter);
+// Ledger routes (protected)
+app.use(`/api/${API_VERSION}/ledger`, ledgerRoutes);
 
 // TODO: Mount other module routes
 // app.use(`/api/${API_VERSION}/income`, authMiddleware, incomeRouter);
