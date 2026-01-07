@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
+import * as jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import bcrypt from 'bcryptjs';
-import { db } from '@config/database';
+import * as bcrypt from 'bcryptjs';
+import { getDatabase } from '@config/database';
 import { logger } from '@utils/logger';
 import type { RefreshToken, AuthTokens } from '@/types/auth.types';
 
@@ -41,7 +41,7 @@ export class JWTService {
         expiresIn: this.JWT_ACCESS_EXPIRY,
         issuer: 'fintracker-api',
         audience: 'fintracker-client',
-      });
+      } as jwt.SignOptions);
     } catch (error) {
       logger.error('Error generating access token:', error);
       throw new Error('Failed to generate access token');
@@ -65,7 +65,7 @@ export class JWTService {
         expiresIn: this.JWT_REFRESH_EXPIRY,
         issuer: 'fintracker-api',
         audience: 'fintracker-client',
-      });
+      } as jwt.SignOptions);
     } catch (error) {
       logger.error('Error generating refresh token:', error);
       throw new Error('Failed to generate refresh token');
@@ -103,6 +103,8 @@ export class JWTService {
    */
   private async storeRefreshToken(userId: string, refreshToken: string): Promise<void> {
     try {
+      const db = getDatabase();
+
       // Decode token to get expiration
       const decoded = jwt.decode(refreshToken) as { exp?: number; jti?: string };
       if (!decoded || !decoded.exp || !decoded.jti) {
@@ -116,12 +118,16 @@ export class JWTService {
       const expiresAt = new Date(decoded.exp * 1000);
 
       // Insert into database
-      await db<RefreshToken>('refresh_tokens').insert({
+      const insertResult = await db<RefreshToken>('refresh_tokens').insert({
         user_id: userId,
         token_hash: tokenHash,
         expires_at: expiresAt,
         is_revoked: false,
       });
+
+      if (!insertResult) {
+        throw new Error('Failed to store refresh token');
+      }
 
       logger.info(`Refresh token stored for user: ${userId}`);
     } catch (error) {
@@ -192,6 +198,8 @@ export class JWTService {
    */
   async validateRefreshToken(userId: string, refreshToken: string): Promise<boolean> {
     try {
+      const db = getDatabase();
+
       // Get all active refresh tokens for user
       const tokens = await db<RefreshToken>('refresh_tokens')
         .where({ user_id: userId, is_revoked: false })
@@ -219,6 +227,8 @@ export class JWTService {
    */
   async revokeRefreshToken(userId: string, refreshToken: string): Promise<void> {
     try {
+      const db = getDatabase();
+
       // Get all active refresh tokens for user
       const tokens = await db<RefreshToken>('refresh_tokens')
         .where({ user_id: userId, is_revoked: false })
@@ -228,10 +238,14 @@ export class JWTService {
       for (const tokenRecord of tokens) {
         const isMatch = await bcrypt.compare(refreshToken, tokenRecord.token_hash);
         if (isMatch) {
-          await db<RefreshToken>('refresh_tokens').where({ id: tokenRecord.id }).update({
+          const updateResult = await db<RefreshToken>('refresh_tokens').where({ id: tokenRecord.id }).update({
             is_revoked: true,
             revoked_at: new Date(),
           });
+
+          if (!updateResult) {
+            throw new Error('Failed to revoke refresh token');
+          }
 
           logger.info(`Refresh token revoked for user: ${userId}`);
           return;
@@ -251,12 +265,20 @@ export class JWTService {
    */
   async revokeAllRefreshTokens(userId: string): Promise<void> {
     try {
-      await db<RefreshToken>('refresh_tokens').where({ user_id: userId, is_revoked: false }).update({
-        is_revoked: true,
-        revoked_at: new Date(),
-      });
+      const db = getDatabase();
 
-      logger.info(`All refresh tokens revoked for user: ${userId}`);
+      const updateResult = await db<RefreshToken>('refresh_tokens')
+        .where({ user_id: userId, is_revoked: false })
+        .update({
+          is_revoked: true,
+          revoked_at: new Date(),
+        });
+
+      if (!updateResult) {
+        logger.warn(`No refresh tokens found to revoke for user: ${userId}`);
+      } else {
+        logger.info(`All refresh tokens revoked for user: ${userId}`);
+      }
     } catch (error) {
       logger.error('Error revoking all refresh tokens:', error);
       throw error;

@@ -93,7 +93,7 @@ export async function authMiddleware(req: Request, res: Response, next: NextFunc
  * Verifies JWT access token if provided, but doesn't fail if not
  * Useful for endpoints that have different behavior for authenticated vs anonymous users
  */
-export async function optionalAuthMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function optionalAuthMiddleware(req: Request, _res: Response, next: NextFunction): Promise<void> {
   try {
     // Get token from Authorization header
     const authHeader = req.headers.authorization;

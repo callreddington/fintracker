@@ -1,5 +1,5 @@
-import bcrypt from 'bcryptjs';
-import { db } from '@config/database';
+import * as bcrypt from 'bcryptjs';
+import { getDatabase } from '@config/database';
 import { logger } from '@utils/logger';
 import { jwtService } from './jwt.service';
 import type { RegisterUserInput, LoginUserInput, UserResponse, User, LoginResponse } from '@/types/auth.types';
@@ -20,6 +20,8 @@ export class AuthService {
     const { email, password, full_name } = input;
 
     try {
+      const db = getDatabase();
+
       // Check if user already exists
       const existingUser = await db<User>('users').where({ email }).first();
 
@@ -41,6 +43,10 @@ export class AuthService {
           email_verified_at: null,
         })
         .returning(['id', 'email', 'full_name', 'email_verified', 'email_verified_at', 'created_at', 'updated_at']);
+
+      if (!user) {
+        throw new Error('Failed to create user');
+      }
 
       logger.info(`User registered successfully: ${user.id}`);
 
@@ -66,8 +72,9 @@ export class AuthService {
    */
   async findUserByEmail(email: string): Promise<User | undefined> {
     try {
+      const db = getDatabase();
       const user = await db<User>('users').where({ email }).first();
-      return user;
+      return user || undefined;
     } catch (error) {
       logger.error('Error finding user by email:', error);
       throw error;
@@ -81,8 +88,9 @@ export class AuthService {
    */
   async findUserById(id: string): Promise<User | undefined> {
     try {
+      const db = getDatabase();
       const user = await db<User>('users').where({ id }).first();
-      return user;
+      return user || undefined;
     } catch (error) {
       logger.error('Error finding user by ID:', error);
       throw error;
