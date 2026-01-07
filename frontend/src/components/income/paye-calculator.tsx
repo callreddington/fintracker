@@ -35,13 +35,11 @@ interface PayeResult {
   total_deductions: string;
   net_salary: string;
   breakdown: {
-    paye_bands: Array<{
-      band_order: number;
-      min_amount: string;
-      max_amount: string | null;
-      rate: string;
-      taxable_amount: string;
-      tax: string;
+    tax_bands: Array<{
+      band_description: string;
+      taxable_amount: number;
+      rate: number;
+      tax: number;
     }>;
   };
 }
@@ -325,12 +323,10 @@ export default function PayeCalculator() {
             <div className="space-y-2">
               <h4 className="text-sm font-semibold">PAYE Tax Bands Applied</h4>
               <div className="space-y-1 text-xs">
-                {result.breakdown.paye_bands.map((band) => (
-                  <div key={band.band_order} className="flex justify-between text-muted-foreground">
+                {result.breakdown.tax_bands.map((band, index) => (
+                  <div key={index} className="flex justify-between text-muted-foreground">
                     <span>
-                      {formatCurrency(band.min_amount)} -{' '}
-                      {band.max_amount ? formatCurrency(band.max_amount) : '∞'} (
-                      {(parseFloat(band.rate) * 100).toFixed(1)}%):
+                      {band.band_description} ({(band.rate * 100).toFixed(1)}%):
                     </span>
                     <span>{formatCurrency(band.tax)}</span>
                   </div>

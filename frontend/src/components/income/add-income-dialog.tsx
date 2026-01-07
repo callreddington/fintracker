@@ -24,12 +24,13 @@ import { useAuthStore } from '@/lib/auth.store';
 import axios from 'axios';
 
 const incomeEntrySchema = z.object({
-  entry_date: z.string().min(1, 'Date is required'),
+  income_date: z.string().min(1, 'Date is required'),
   gross_amount: z.string().min(1, 'Gross salary is required'),
+  description: z.string().min(1, 'Description is required'),
+  income_type: z.enum(['SALARY', 'BUSINESS', 'INVESTMENT', 'OTHER']).default('SALARY'),
   employer_name: z.string().optional(),
   employer_pin: z.string().optional(),
   bank_account_id: z.string().optional(),
-  description: z.string().optional(),
   create_transaction: z.boolean().default(true),
   // Tax reliefs
   personal_relief_amount: z.string().optional(),
@@ -69,7 +70,8 @@ export default function AddIncomeDialog({ open, onOpenChange, onSuccess }: AddIn
   } = useForm<IncomeEntryForm>({
     resolver: zodResolver(incomeEntrySchema),
     defaultValues: {
-      entry_date: new Date().toISOString().split('T')[0],
+      income_date: new Date().toISOString().split('T')[0],
+      income_type: 'SALARY',
       create_transaction: true,
     },
   });
@@ -105,12 +107,13 @@ export default function AddIncomeDialog({ open, onOpenChange, onSuccess }: AddIn
       const token = await getAccessToken();
 
       const payload = {
-        entry_date: data.entry_date,
+        income_date: data.income_date,
+        income_type: data.income_type,
+        description: data.description,
         gross_amount: parseFloat(data.gross_amount),
         employer_name: data.employer_name || undefined,
         employer_pin: data.employer_pin || undefined,
         bank_account_id: data.bank_account_id || undefined,
-        description: data.description || undefined,
         create_transaction: createTransaction,
         personal_relief_amount: data.personal_relief_amount
           ? parseFloat(data.personal_relief_amount)
@@ -163,12 +166,12 @@ export default function AddIncomeDialog({ open, onOpenChange, onSuccess }: AddIn
           {/* Date and Amount */}
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="entry_date">
+              <Label htmlFor="income_date">
                 Date <span className="text-destructive">*</span>
               </Label>
-              <Input id="entry_date" type="date" {...register('entry_date')} />
-              {errors.entry_date && (
-                <p className="text-sm text-destructive">{errors.entry_date.message}</p>
+              <Input id="income_date" type="date" {...register('income_date')} />
+              {errors.income_date && (
+                <p className="text-sm text-destructive">{errors.income_date.message}</p>
               )}
             </div>
 
@@ -187,6 +190,21 @@ export default function AddIncomeDialog({ open, onOpenChange, onSuccess }: AddIn
                 <p className="text-sm text-destructive">{errors.gross_amount.message}</p>
               )}
             </div>
+          </div>
+
+          {/* Description */}
+          <div className="space-y-2">
+            <Label htmlFor="description">
+              Description <span className="text-destructive">*</span>
+            </Label>
+            <Input
+              id="description"
+              placeholder="e.g., January 2026 Salary"
+              {...register('description')}
+            />
+            {errors.description && (
+              <p className="text-sm text-destructive">{errors.description.message}</p>
+            )}
           </div>
 
           {/* Employer Information */}
@@ -233,16 +251,6 @@ export default function AddIncomeDialog({ open, onOpenChange, onSuccess }: AddIn
             <p className="text-xs text-muted-foreground">
               Select a bank account to automatically create a ledger transaction
             </p>
-          </div>
-
-          {/* Description */}
-          <div className="space-y-2">
-            <Label htmlFor="description">Description (Optional)</Label>
-            <Input
-              id="description"
-              placeholder="e.g., January 2024 Salary"
-              {...register('description')}
-            />
           </div>
 
           {/* Create Transaction Checkbox */}
