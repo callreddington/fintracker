@@ -1,6 +1,7 @@
 import { errorHandler } from '@middleware/errorHandler';
 import { rateLimiter } from '@middleware/rateLimiter';
 import { requestLogger } from '@middleware/requestLogger';
+import { authRoutes } from '@modules/auth/auth.routes';
 import { logger } from '@utils/logger';
 import { validateEnv } from '@utils/validateEnv';
 import compression from 'compression';
@@ -86,10 +87,11 @@ app.get('/health', (_req: Request, res: Response) => {
   });
 });
 
-// API routes will be mounted here
-// TODO: Mount authentication routes
-// const API_VERSION = process.env.API_VERSION || 'v1';
-// app.use(`/api/${API_VERSION}/auth`, authRouter);
+// API routes
+const API_VERSION = process.env.API_VERSION || 'v1';
+
+// Authentication routes (public)
+app.use(`/api/${API_VERSION}/auth`, authRoutes);
 
 // TODO: Mount ledger routes
 // app.use(`/api/${API_VERSION}/ledger`, authMiddleware, ledgerRouter);

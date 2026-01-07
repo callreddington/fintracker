@@ -15,10 +15,15 @@ async function startServer(): Promise<void> {
     await initializeDatabase();
     logger.info('✅ Database connected successfully');
 
-    // Initialize Redis connection
+    // Initialize Redis connection (non-blocking - optional for development)
     logger.info('Initializing Redis connection...');
-    await initializeRedis();
-    logger.info('✅ Redis connected successfully');
+    try {
+      await initializeRedis();
+      logger.info('✅ Redis connected successfully');
+    } catch (error) {
+      logger.warn('⚠️  Redis connection failed - proceeding without Redis (some features may be unavailable)');
+      logger.warn('Redis will be required for: refresh token storage, rate limiting, session management');
+    }
 
     // Start Express server
     const server = app.listen(PORT, () => {
