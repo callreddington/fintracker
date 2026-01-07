@@ -79,10 +79,13 @@ export default function AddIncomeDialog({ open, onOpenChange, onSuccess }: AddIn
     const fetchAccounts = async () => {
       try {
         const token = await getAccessToken();
-        const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/ledger/accounts`, {
-          headers: { Authorization: `Bearer ${token}` },
-          params: { account_type: 'BANK' },
-        });
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1'}/ledger/accounts`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+            params: { account_type: 'BANK' },
+          }
+        );
         setBankAccounts(response.data.accounts || []);
       } catch (err) {
         console.error('Failed to fetch bank accounts:', err);
@@ -121,12 +124,16 @@ export default function AddIncomeDialog({ open, onOpenChange, onSuccess }: AddIn
         mortgage_interest: data.mortgage_interest ? parseFloat(data.mortgage_interest) : undefined,
       };
 
-      await axios.post(`${import.meta.env.VITE_API_URL}/api/v1/income/entries`, payload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1'}/income/entries`,
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
 
       reset();
       onOpenChange(false);

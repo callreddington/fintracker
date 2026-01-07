@@ -65,27 +65,30 @@ export default function PayeCalculator() {
     setError(null);
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/income/paye/calculate`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          gross_salary: parseFloat(data.gross_salary),
-          personal_relief_amount: data.personal_relief_amount
-            ? parseFloat(data.personal_relief_amount)
-            : undefined,
-          insurance_relief_amount: data.insurance_relief_amount
-            ? parseFloat(data.insurance_relief_amount)
-            : undefined,
-          pension_contribution: data.pension_contribution
-            ? parseFloat(data.pension_contribution)
-            : undefined,
-          mortgage_interest: data.mortgage_interest
-            ? parseFloat(data.mortgage_interest)
-            : undefined,
-        }),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1'}/income/paye/calculate`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            gross_salary: parseFloat(data.gross_salary),
+            personal_relief_amount: data.personal_relief_amount
+              ? parseFloat(data.personal_relief_amount)
+              : undefined,
+            insurance_relief_amount: data.insurance_relief_amount
+              ? parseFloat(data.insurance_relief_amount)
+              : undefined,
+            pension_contribution: data.pension_contribution
+              ? parseFloat(data.pension_contribution)
+              : undefined,
+            mortgage_interest: data.mortgage_interest
+              ? parseFloat(data.mortgage_interest)
+              : undefined,
+          }),
+        }
+      );
 
       if (!response.ok) {
         const errorData = await response.json();

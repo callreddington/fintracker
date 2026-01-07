@@ -28,9 +28,12 @@ export default function IncomePage() {
     queryKey: ['income-entries'],
     queryFn: async () => {
       const token = await getAccessToken();
-      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/v1/income/entries`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL || 'http://localhost:3000/api/v1'}/income/entries`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       return response.data.entries as IncomeEntry[];
     },
   });
