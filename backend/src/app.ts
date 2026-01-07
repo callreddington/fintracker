@@ -2,6 +2,7 @@ import { errorHandler } from '@middleware/errorHandler';
 import { rateLimiter } from '@middleware/rateLimiter';
 import { requestLogger } from '@middleware/requestLogger';
 import { authRoutes } from '@modules/auth/auth.routes';
+import { userRoutes } from '@modules/auth/user.routes';
 import { logger } from '@utils/logger';
 import { validateEnv } from '@utils/validateEnv';
 import compression from 'compression';
@@ -92,6 +93,9 @@ const API_VERSION = process.env.API_VERSION || 'v1';
 
 // Authentication routes (public)
 app.use(`/api/${API_VERSION}/auth`, authRoutes);
+
+// User routes (protected)
+app.use(`/api/${API_VERSION}/users`, userRoutes);
 
 // TODO: Mount ledger routes
 // app.use(`/api/${API_VERSION}/ledger`, authMiddleware, ledgerRouter);
