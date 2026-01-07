@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 // Pages
 import LoginPage from '@/pages/auth/login';
 import RegisterPage from '@/pages/auth/register';
+import DebugPage from '@/pages/debug';
 import DashboardPage from '@/pages/dashboard';
 import TransactionsPage from '@/pages/transactions';
 import IncomePage from '@/pages/income';
