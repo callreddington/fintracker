@@ -1,0 +1,10 @@
+19:44:21.963 Running build in Washington, D.C., USA (East) – iad1
+19:44:21.967 Build machine configuration: 2 cores, 8 GB
+19:44:22.266 Cloning github.com/callreddington/fintracker (Branch: main, Commit: 4d454c6)
+19:44:22.267 Previous build caches not available.
+19:44:22.805 Cloning completed: 539.000ms
+19:44:23.324 Running "git diff --quiet HEAD^ HEAD ./frontend/"
+19:44:23.366 fatal: ambiguous argument './frontend/': unknown revision or path not in the working tree.
+19:44:23.366 Use '--' to separate paths from revisions, like this:
+19:44:23.366 'git <command> [<revision>...] -- [<file>...]'
+19:44:23.367 

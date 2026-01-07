@@ -1,0 +1,120 @@
+2026-01-07T21:18:43.742899895Z ==> Downloaded 80MB in 3s. Extraction took 2s.
+2026-01-07T21:18:45.954582154Z ==> Requesting Node.js version >=20.0.0
+2026-01-07T21:18:46.08236952Z ==> Using Node.js version 25.2.1 via /opt/render/project/src/backend/package.json
+2026-01-07T21:18:46.106325Z ==> Docs on specifying a Node.js version: https://render.com/docs/node-version
+2026-01-07T21:18:46.223473753Z ==> Running build command 'npm install && npm run build'...
+2026-01-07T21:18:47.59580609Z 
+2026-01-07T21:18:47.595829111Z > fintracker@1.0.0 prepare
+2026-01-07T21:18:47.595833521Z > husky install || true
+2026-01-07T21:18:47.595835721Z 
+2026-01-07T21:18:47.601374938Z sh: 1: husky: not found
+2026-01-07T21:18:47.604129856Z 
+2026-01-07T21:18:47.604144067Z up to date, audited 271 packages in 1s
+2026-01-07T21:18:47.604179238Z 
+2026-01-07T21:18:47.604331905Z 32 packages are looking for funding
+2026-01-07T21:18:47.60444134Z   run `npm fund` for details
+2026-01-07T21:18:47.605434066Z 
+2026-01-07T21:18:47.605442237Z found 0 vulnerabilities
+2026-01-07T21:18:47.789394757Z 
+2026-01-07T21:18:47.789413548Z > @fintracker/backend@1.0.0 prebuild
+2026-01-07T21:18:47.789416538Z > npm run clean
+2026-01-07T21:18:47.789418728Z 
+2026-01-07T21:18:47.910541904Z 
+2026-01-07T21:18:47.910563225Z > @fintracker/backend@1.0.0 clean
+2026-01-07T21:18:47.910566446Z > rm -rf dist
+2026-01-07T21:18:47.910568646Z 
+2026-01-07T21:18:47.923631342Z 
+2026-01-07T21:18:47.923652012Z > @fintracker/backend@1.0.0 build
+2026-01-07T21:18:47.923655923Z > tsc && tsc-alias
+2026-01-07T21:18:47.923658083Z 
+2026-01-07T21:18:55.926919846Z ==> Uploading build...
+2026-01-07T21:19:01.066936678Z ==> Uploaded in 3.8s. Compression took 1.3s
+2026-01-07T21:19:01.085339791Z ==> Build successful 🎉
+2026-01-07T21:19:05.963599734Z ==> Setting WEB_CONCURRENCY=1 by default, based on available CPUs in the instance
+2026-01-07T21:19:06.107254703Z ==> Deploying...
+2026-01-07T21:19:27.309280497Z ==> Running 'npm run start'
+2026-01-07T21:19:28.605855652Z 
+2026-01-07T21:19:28.605876983Z > @fintracker/backend@1.0.0 start
+2026-01-07T21:19:28.605882653Z > node dist/server.js
+2026-01-07T21:19:28.605885333Z 
+2026-01-07T21:19:32.708843025Z 2026-01-07 21:19:32 [INFO]: ✅ Environment variables validated successfully {"service":"fintracker-api"}
+2026-01-07T21:19:32.712587267Z 2026-01-07 21:19:32 [INFO]: Initializing database connection... {"service":"fintracker-api"}
+2026-01-07T21:19:33.127645664Z 2026-01-07 21:19:33 [INFO]: Database connection established {"service":"fintracker-api"}
+2026-01-07T21:19:33.127988552Z 2026-01-07 21:19:33 [INFO]: ✅ Database connected successfully {"service":"fintracker-api"}
+2026-01-07T21:19:33.128309048Z 2026-01-07 21:19:33 [INFO]: Initializing Redis connection... {"service":"fintracker-api"}
+2026-01-07T21:19:33.142694506Z 2026-01-07 21:19:33 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.20361463Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.204921027Z 2026-01-07 21:19:33 [INFO]: Retrying Redis connection in 0ms... {"service":"fintracker-api"}
+2026-01-07T21:19:33.205234373Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.206856346Z 2026-01-07 21:19:33 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.212859164Z 2026-01-07 21:19:33 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.214592163Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.214955972Z 2026-01-07 21:19:33 [INFO]: Retrying Redis connection in 100ms... {"service":"fintracker-api"}
+2026-01-07T21:19:33.215174103Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.316050036Z 2026-01-07 21:19:33 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.323959932Z 2026-01-07 21:19:33 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.325818117Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.326165665Z 2026-01-07 21:19:33 [INFO]: Retrying Redis connection in 200ms... {"service":"fintracker-api"}
+2026-01-07T21:19:33.326359785Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.527215906Z 2026-01-07 21:19:33 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.533441465Z 2026-01-07 21:19:33 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.535109071Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.535354833Z 2026-01-07 21:19:33 [INFO]: Retrying Redis connection in 300ms... {"service":"fintracker-api"}
+2026-01-07T21:19:33.535471159Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.836171041Z 2026-01-07 21:19:33 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.842085314Z 2026-01-07 21:19:33 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:33.843639914Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:33.843876406Z 2026-01-07 21:19:33 [INFO]: Retrying Redis connection in 400ms... {"service":"fintracker-api"}
+2026-01-07T21:19:33.844013843Z 2026-01-07 21:19:33 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:34.245073642Z 2026-01-07 21:19:34 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:34.251910472Z 2026-01-07 21:19:34 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:34.253856942Z 2026-01-07 21:19:34 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:34.254047612Z 2026-01-07 21:19:34 [INFO]: Retrying Redis connection in 500ms... {"service":"fintracker-api"}
+2026-01-07T21:19:34.254269533Z 2026-01-07 21:19:34 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:34.754493528Z 2026-01-07 21:19:34 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:34.760888636Z 2026-01-07 21:19:34 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:34.762618454Z 2026-01-07 21:19:34 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:34.76293607Z 2026-01-07 21:19:34 [INFO]: Retrying Redis connection in 600ms... {"service":"fintracker-api"}
+2026-01-07T21:19:34.763179723Z 2026-01-07 21:19:34 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:35.367860034Z 2026-01-07 21:19:35 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:35.377821735Z 2026-01-07 21:19:35 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:35.380284382Z 2026-01-07 21:19:35 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:35.383771901Z 2026-01-07 21:19:35 [INFO]: Retrying Redis connection in 700ms... {"service":"fintracker-api"}
+2026-01-07T21:19:35.383785901Z 2026-01-07 21:19:35 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:36.081336025Z 2026-01-07 21:19:36 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:36.087025887Z 2026-01-07 21:19:36 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:36.09097953Z 2026-01-07 21:19:36 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:36.090991511Z 2026-01-07 21:19:36 [INFO]: Retrying Redis connection in 800ms... {"service":"fintracker-api"}
+2026-01-07T21:19:36.0909945Z 2026-01-07 21:19:36 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:36.892721157Z 2026-01-07 21:19:36 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:36.900077015Z 2026-01-07 21:19:36 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:36.90193805Z 2026-01-07 21:19:36 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:36.902336771Z 2026-01-07 21:19:36 [INFO]: Retrying Redis connection in 900ms... {"service":"fintracker-api"}
+2026-01-07T21:19:36.902931361Z 2026-01-07 21:19:36 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:37.804211504Z 2026-01-07 21:19:37 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:37.813531832Z 2026-01-07 21:19:37 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:37.815522334Z 2026-01-07 21:19:37 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:37.81583045Z 2026-01-07 21:19:37 [INFO]: Retrying Redis connection in 1000ms... {"service":"fintracker-api"}
+2026-01-07T21:19:37.815982027Z 2026-01-07 21:19:37 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:38.81729133Z 2026-01-07 21:19:38 [INFO]: Redis client reconnecting... {"service":"fintracker-api"}
+2026-01-07T21:19:38.825155293Z 2026-01-07 21:19:38 [INFO]: Redis client connecting... {"service":"fintracker-api"}
+2026-01-07T21:19:38.82703808Z 2026-01-07 21:19:38 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:38.827149116Z 2026-01-07 21:19:38 [ERROR]: Redis reconnection attempts exceeded {"service":"fintracker-api"}
+2026-01-07T21:19:38.827374167Z 2026-01-07 21:19:38 [ERROR]: Redis Client Error: Socket closed unexpectedly {"service":"fintracker-api","stack":"Error: Socket closed unexpectedly\n    at Socket.<anonymous> (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:194:118)\n    at Object.onceWrapper (node:events:623:26)\n    at Socket.emit (node:events:508:28)\n    at TCP.<anonymous> (node:net:346:12)"}
+2026-01-07T21:19:38.827832111Z 2026-01-07 21:19:38 [ERROR]: Failed to initialize Redis: Redis connection failed {"service":"fintracker-api","originalError":{},"socketError":{},"stack":"Error: Redis connection failed\n    at RedisSocket._RedisSocket_shouldReconnect (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:140:16)\n    at RedisSocket._RedisSocket_connect (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/socket.js:162:117)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async Commander.connect (/opt/render/project/src/node_modules/@redis/client/dist/lib/client/index.js:185:9)\n    at async initializeRedis (/opt/render/project/src/backend/dist/config/redis.js:51:9)\n    at async startServer (/opt/render/project/src/backend/dist/server.js:49:13)"}
+2026-01-07T21:19:38.828035111Z 2026-01-07 21:19:38 [WARN]: ⚠️  Redis connection failed - proceeding without Redis (some features may be unavailable) {"service":"fintracker-api"}
+2026-01-07T21:19:38.828093144Z 2026-01-07 21:19:38 [WARN]: Redis will be required for: refresh token storage, rate limiting, session management {"service":"fintracker-api"}
+2026-01-07T21:19:38.830909108Z 2026-01-07 21:19:38 [INFO]: 🚀 Server running on port 10000 {"service":"fintracker-api"}
+2026-01-07T21:19:38.83113506Z 2026-01-07 21:19:38 [INFO]: 📝 Environment: production {"service":"fintracker-api"}
+2026-01-07T21:19:38.831197243Z 2026-01-07 21:19:38 [INFO]: 📡 API Version: v1 {"service":"fintracker-api"}
+2026-01-07T21:19:38.831356711Z 2026-01-07 21:19:38 [INFO]: 🌐 CORS Origins: https://fintracker-frontend-one.vercel.app,http://localhost:5173 {"service":"fintracker-api"}
+2026-01-07T21:19:39.447834468Z 2026-01-07 21:19:39 [INFO]: Incoming request: HEAD / {"service":"fintracker-api","method":"HEAD","url":"/","ip":"::1","userAgent":"Go-http-client/1.1"}
+2026-01-07T21:19:39.452882597Z 2026-01-07 21:19:39 [INFO]: Request completed: HEAD / {"service":"fintracker-api","method":"HEAD","url":"/","statusCode":200,"duration":"5ms","ip":"::1"}
+2026-01-07T21:19:40.65709969Z ==> Your service is live 🎉
+2026-01-07T21:19:40.831062657Z ==> 
+2026-01-07T21:19:40.999836084Z ==> ///////////////////////////////////////////////////////////
+2026-01-07T21:19:41.165886791Z ==> 
+2026-01-07T21:19:41.361290556Z ==> Available at your primary URL https://fintracker-y76x.onrender.com
+2026-01-07T21:19:41.361290556Z ==> Available at your primary URL https://fintracker-y76x.onrender.com
+2026-01-07T21:19:41.528445903Z ==> 
+2026-01-07T21:19:41.726956908Z ==> ///////////////////////////////////////////////////////////
