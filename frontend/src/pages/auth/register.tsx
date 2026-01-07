@@ -1,14 +1,45 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useAuthStore } from '@/lib/auth.store';
 
 export default function RegisterPage() {
-  const handleSubmit = (e: React.FormEvent) => {
+  const navigate = useNavigate();
+  const { register, isLoading, error, clearError } = useAuthStore();
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [validationError, setValidationError] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement registration logic
-    console.log('Registration form submitted');
+    clearError();
+    setValidationError('');
+
+    // Validate passwords match
+    if (password !== confirmPassword) {
+      setValidationError('Passwords do not match');
+      return;
+    }
+
+    // Validate password strength (basic)
+    if (password.length < 8) {
+      setValidationError('Password must be at least 8 characters long');
+      return;
+    }
+
+    try {
+      await register({ email, password, full_name: fullName });
+      // After successful registration, redirect to login
+      navigate('/login?registered=true');
+    } catch (error) {
+      // Error is handled by the store
+      console.error('Registration failed:', error);
+    }
   };
 
   return (
@@ -20,6 +51,11 @@ export default function RegisterPage() {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
+            {(error || validationError) && (
+              <div className="rounded-md bg-destructive/15 p-3 text-sm text-destructive">
+                {error || validationError}
+              </div>
+            )}
             <div className="space-y-2">
               <Label htmlFor="full_name">Full Name</Label>
               <Input
@@ -28,6 +64,9 @@ export default function RegisterPage() {
                 placeholder="John Doe"
                 required
                 autoComplete="name"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                disabled={isLoading}
               />
             </div>
             <div className="space-y-2">
@@ -38,6 +77,9 @@ export default function RegisterPage() {
                 placeholder="name@example.com"
                 required
                 autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={isLoading}
               />
             </div>
             <div className="space-y-2">
@@ -48,6 +90,9 @@ export default function RegisterPage() {
                 placeholder="Create a strong password"
                 required
                 autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={isLoading}
               />
             </div>
             <div className="space-y-2">
@@ -58,10 +103,13 @@ export default function RegisterPage() {
                 placeholder="Confirm your password"
                 required
                 autoComplete="new-password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                disabled={isLoading}
               />
             </div>
-            <Button type="submit" className="w-full">
-              Create Account
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? 'Creating Account...' : 'Create Account'}
             </Button>
           </form>
 
