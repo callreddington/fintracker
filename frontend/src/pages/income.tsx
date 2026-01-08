@@ -144,36 +144,36 @@ export default function IncomePage() {
 
       {/* Summary Cards */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Income</CardTitle>
-            <Wallet className="h-4 w-4" />
+            <Wallet className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(totalIncome)}</div>
-            <p className="text-xs opacity-90">Net amount received</p>
+            <p className="text-xs text-muted-foreground">Net amount received</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Gross Income</CardTitle>
-            <DollarSign className="h-4 w-4" />
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(totalGross)}</div>
-            <p className="text-xs opacity-90">Before deductions</p>
+            <p className="text-xs text-muted-foreground">Before deductions</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Deductions</CardTitle>
-            <TrendingUp className="h-4 w-4" />
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(totalDeductions)}</div>
-            <p className="text-xs opacity-90">PAYE, NHIF, NSSF, Housing</p>
+            <p className="text-xs text-muted-foreground">PAYE, NHIF, NSSF, Housing</p>
           </CardContent>
         </Card>
       </div>

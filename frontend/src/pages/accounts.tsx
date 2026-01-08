@@ -177,51 +177,51 @@ export default function AccountsPage() {
 
       {/* Summary Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-gradient-to-br from-indigo-500 to-indigo-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Net Worth</CardTitle>
-            <PiggyBank className="h-4 w-4" />
+            <PiggyBank className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {formatCurrency(summary?.total_net_worth || 0)}
             </div>
-            <p className="text-xs opacity-90">
+            <p className="text-xs text-muted-foreground">
               Assets: {formatCurrency(summary?.total_assets || 0)}
             </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Liquid Cash</CardTitle>
-            <Wallet className="h-4 w-4" />
+            <Wallet className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(summary?.liquid_cash || 0)}</div>
-            <p className="text-xs opacity-90">Cash, Bank, M-Pesa</p>
+            <p className="text-xs text-muted-foreground">Cash, Bank, M-Pesa</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Investments</CardTitle>
-            <TrendingUp className="h-4 w-4" />
+            <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(summary?.investments || 0)}</div>
-            <p className="text-xs opacity-90">Stocks, Bonds, Real Estate</p>
+            <p className="text-xs text-muted-foreground">Stocks, Bonds, Real Estate</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-gray-500 to-gray-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Virtual</CardTitle>
-            <CreditCard className="h-4 w-4" />
+            <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(summary?.virtual || 0)}</div>
-            <p className="text-xs opacity-90">Digital wallets</p>
+            <p className="text-xs text-muted-foreground">Digital wallets</p>
           </CardContent>
         </Card>
       </div>

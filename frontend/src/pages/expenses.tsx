@@ -147,38 +147,40 @@ export default function ExpensesPage() {
 
       {/* Summary Cards */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
-            <TrendingDown className="h-4 w-4" />
+            <TrendingDown className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(summary?.total_expenses || 0)}</div>
-            <p className="text-xs opacity-90">{summary?.transaction_count || 0} transactions</p>
+            <p className="text-xs text-muted-foreground">
+              {summary?.transaction_count || 0} transactions
+            </p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-orange-500 to-orange-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Average Expense</CardTitle>
-            <CreditCard className="h-4 w-4" />
+            <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {formatCurrency(summary?.average_expense || 0)}
             </div>
-            <p className="text-xs opacity-90">Per transaction</p>
+            <p className="text-xs text-muted-foreground">Per transaction</p>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Top Category</CardTitle>
-            <ShoppingCart className="h-4 w-4" />
+            <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{summary?.top_category || 'N/A'}</div>
-            <p className="text-xs opacity-90">
+            <p className="text-xs text-muted-foreground">
               {summary?.top_merchant ? `at ${summary.top_merchant}` : 'Most spending'}
             </p>
           </CardContent>

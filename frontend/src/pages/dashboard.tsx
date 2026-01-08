@@ -189,76 +189,78 @@ export default function Dashboard() {
 
       {/* KPI Cards */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-gradient-to-br from-blue-500 to-blue-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Income</CardTitle>
-            <Wallet className="h-4 w-4" />
+            <Wallet className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {formatCurrency(stats.current_period.total_income)}
             </div>
-            <div className="mt-1 flex items-center text-xs">
+            <div className="mt-1 flex items-center text-xs text-muted-foreground">
               {stats.comparison.income_change >= 0 ? (
-                <TrendingUp className="mr-1 h-4 w-4" />
+                <TrendingUp className="mr-1 h-4 w-4 text-green-600" />
               ) : (
-                <TrendingDown className="mr-1 h-4 w-4" />
+                <TrendingDown className="mr-1 h-4 w-4 text-red-600" />
               )}
               <span>{formatPercentage(stats.comparison.income_change)} from last period</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-red-500 to-red-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Expenses</CardTitle>
-            <CreditCard className="h-4 w-4" />
+            <CreditCard className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {formatCurrency(stats.current_period.total_expenses)}
             </div>
-            <div className="mt-1 flex items-center text-xs">
+            <div className="mt-1 flex items-center text-xs text-muted-foreground">
               {stats.comparison.expense_change >= 0 ? (
-                <TrendingUp className="mr-1 h-4 w-4" />
+                <TrendingUp className="mr-1 h-4 w-4 text-red-600" />
               ) : (
-                <TrendingDown className="mr-1 h-4 w-4" />
+                <TrendingDown className="mr-1 h-4 w-4 text-green-600" />
               )}
               <span>{formatPercentage(stats.comparison.expense_change)} from last period</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-green-500 to-green-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Net Savings</CardTitle>
-            <PiggyBank className="h-4 w-4" />
+            <PiggyBank className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {formatCurrency(stats.current_period.net_savings)}
             </div>
-            <div className="mt-1 flex items-center text-xs">
+            <div className="mt-1 flex items-center text-xs text-muted-foreground">
               {stats.comparison.savings_change >= 0 ? (
-                <TrendingUp className="mr-1 h-4 w-4" />
+                <TrendingUp className="mr-1 h-4 w-4 text-green-600" />
               ) : (
-                <TrendingDown className="mr-1 h-4 w-4" />
+                <TrendingDown className="mr-1 h-4 w-4 text-red-600" />
               )}
               <span>{formatPercentage(stats.comparison.savings_change)} from last period</span>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+        <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Savings Rate</CardTitle>
-            <Activity className="h-4 w-4" />
+            <Activity className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">
               {stats.current_period.savings_rate.toFixed(1)}%
             </div>
-            <p className="mt-1 text-xs">{stats.current_period.transaction_count} transactions</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {stats.current_period.transaction_count} transactions
+            </p>
           </CardContent>
         </Card>
       </div>
