@@ -8,6 +8,7 @@ import RegisterPage from '@/pages/auth/register';
 import DebugPage from '@/pages/debug';
 import DashboardPage from '@/pages/dashboard';
 import TransactionsPage from '@/pages/transactions';
+import AccountsPage from '@/pages/accounts';
 import IncomePage from '@/pages/income';
 import ExpensesPage from '@/pages/expenses';
 import BudgetsPage from '@/pages/budgets';
@@ -52,6 +53,7 @@ function App() {
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/transactions" element={<TransactionsPage />} />
+              <Route path="/accounts" element={<AccountsPage />} />
               <Route path="/income" element={<IncomePage />} />
               <Route path="/expenses" element={<ExpensesPage />} />
               <Route path="/budgets" element={<BudgetsPage />} />
@@ -59,7 +61,6 @@ function App() {
               <Route path="/portfolio" element={<PortfolioPage />} />
               <Route path="/insights" element={<InsightsPage />} />
               <Route path="/settings" element={<SettingsPage />} />
-              <Route path="/accounts" element={<div>Accounts Page (Coming Soon)</div>} />
               <Route path="/bills" element={<div>Bill Reminders (Coming Soon)</div>} />
               <Route path="/calculator" element={<CalculatorPage />} />
               <Route path="/mpesa" element={<div>M-Pesa Parser (Coming Soon)</div>} />
