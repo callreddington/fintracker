@@ -93,7 +93,7 @@ export class DashboardService {
     const healthScore = await this.calculateFinancialHealthScore(db, userId);
 
     // Generate insights
-    const insights = this.generateInsights(currentStats, previousStats, spendingByCategory, ytdProgress);
+    const insights = this.generateInsights(currentStats, previousStats, spendingByCategory);
 
     return {
       current_period: currentStats,
@@ -272,8 +272,8 @@ export class DashboardService {
     // Merge data
     const months = this.getLast12Months();
     return months.map((month) => {
-      const income = incomeData.find((d) => d.month === month);
-      const expense = expenseData.find((d) => d.month === month);
+      const income = incomeData.find((d: any) => d.month === month);
+      const expense = expenseData.find((d: any) => d.month === month);
       const incomeAmount = parseFloat(income?.total || '0');
       const expenseAmount = parseFloat(expense?.total || '0');
 
@@ -354,8 +354,7 @@ export class DashboardService {
   private generateInsights(
     current: DashboardStats['current_period'],
     previous: DashboardStats['current_period'],
-    categories: DashboardStats['spending_by_category'],
-    ytd: DashboardStats['ytd_progress']
+    categories: DashboardStats['spending_by_category']
   ): DashboardStats['insights'] {
     const insights: DashboardStats['insights'] = [];
 
@@ -377,11 +376,13 @@ export class DashboardService {
     // Highest spending category
     if (categories.length > 0) {
       const highest = categories[0];
-      insights.push({
-        type: 'info',
-        title: `Highest expense: ${highest.category}`,
-        message: `${highest.category} accounts for KES ${highest.amount.toLocaleString()} (${highest.percentage}%). Consider if this can be optimized.`,
-      });
+      if (highest) {
+        insights.push({
+          type: 'info',
+          title: `Highest expense: ${highest.category}`,
+          message: `${highest.category} accounts for KES ${highest.amount.toLocaleString()} (${highest.percentage}%). Consider if this can be optimized.`,
+        });
+      }
     }
 
     // Income change

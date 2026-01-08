@@ -7,6 +7,7 @@ import ledgerRoutes from '@modules/ledger/ledger.routes';
 import incomeRoutes from '@modules/income/income.routes';
 import dashboardRoutes from '@modules/dashboard/dashboard.routes';
 import accountsRoutes from '@modules/accounts/accounts.routes';
+import expensesRoutes from '@modules/expenses/expenses.routes';
 import { logger } from '@utils/logger';
 import { validateEnv } from '@utils/validateEnv';
 import compression from 'compression';
@@ -113,8 +114,10 @@ app.use(`/api/${API_VERSION}/dashboard`, dashboardRoutes);
 // Accounts routes (protected)
 app.use(`/api/${API_VERSION}/accounts`, accountsRoutes);
 
+// Expenses routes (protected)
+app.use(`/api/${API_VERSION}/expenses`, expensesRoutes);
+
 // TODO: Mount other module routes
-// app.use(`/api/${API_VERSION}/expenses`, authMiddleware, expenseRouter);
 // app.use(`/api/${API_VERSION}/budgets`, authMiddleware, budgetRouter);
 // app.use(`/api/${API_VERSION}/goals`, authMiddleware, goalRouter);
 // app.use(`/api/${API_VERSION}/investments`, authMiddleware, investmentRouter);
